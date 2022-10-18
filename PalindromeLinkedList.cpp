@@ -16,60 +16,55 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) 
     {
-        ListNode* curr = head;
-        ListNode* last = nullptr;
-        int size = 0;
-        
-        // find the size of the linked list and the last element
-        while(curr->next != nullptr)
-        {
-             cout << curr->val << endl;
-             curr = curr->next;
-             size++;
-        } 
-        last = curr;
-        //sanity test finding size 
-        cout << size << endl;
-        curr = head;
-        
-        // iterate through linked list 
-        for(int i = 0; i < size;)
-        {
-            // if the haed is not equal to the tail
-            // the list is not a palindrome
-            if(curr->val != last->val){
-               return false; 
-               break;
-            }
-            // iterate to the second to last element in the list
-            last = head;
-            i++;
-            for(int z = 0; z < (size - i); z++)
-               last= last->next;
-            // now we iteratate head 
-            curr = curr->next;
-        }
-        return true;
+    
+      //int* array;
+      //int arr[1]
+      int size = 0;
+      //int i = 0;
+      ListNode* temp = head;
+
+      while(temp!= nullptr){
+         size++;
+         temp = temp->next;
+      }
+      
+      int array[size];
+      temp = head;
+      
+      for(int i = 0; i < size; i++){
+         array[i] = temp->val;
+         temp = temp->next;
+      }
+      
+      for(int y = 0; y < (size + 1)/2; y++){
+      cout << array[y] << ", " << array[(size-1)-y] << endl;
+         if(array[y] != array[(size-1)-y])
+            return false;
+      }
+      return true;
     }
+
 };
 
 int main (int argc, char *argv[])
 {
 
+      int array[9] = {0,1,2,3,4,3,2,1,0};
+   
    ListNode* head = new ListNode(0);
-   ListNode* curr = head;
-   int z = 1;
-   int size = 9;
-
-   for(int i = 1; i != 0;){
-      ListNode* node = new ListNode(z);
-      if( i )
-         z--;
-      else
-         z++;
-      curr->next = node;
-      curr = curr->next;
+   
+   for(int i = 1; i < 9; i++){
+      ListNode* node = new ListNode(array[i], head);
+      head = node;  
    }
+   
+   ListNode* temp = head;
+   
+   while(temp != nullptr){
+   cout << temp->val;
+   temp = temp->next;
+   }
+   cout << endl;
       
       Solution solve = Solution();
       
